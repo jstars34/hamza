@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blur Example</title>
+    <style>
+        #HOLEDIV {
+            width: 300px;
+            height: 300px;
+            border: 1px solid black;
+            position: relative;
+            filter: blur(5px); /* Start blurred */
+        }
+
+        #IDID {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 100px;
+            height: 100px;
+            background-color: lightcoral;
+            z-index: 1;
+            filter: none; /* Remove blur for this div */
+        }
+    </style>
+</head>
+<body>
+
+<div id="HOLEDIV" tabindex="0">
+    Blur
+    <div id="IDID">Unblur</div>
+</div>
+
+<script>
+    const HOLEDIV = document.getElementById('HOLEDIV');
+    const IDID = document.getElementById('IDID');
+
+    HOLEDIV.addEventListener('focus', () => {
+        HOLEDIV.style.filter = 'blur(0px)'; // Remove blur from HOLEDIV
+    });
+
+    HOLEDIV.addEventListener('blur', () => {
+        HOLEDIV.style.filter = 'blur(5px)'; // Blur HOLEDIV again
+    });
+
+    // Ensure HOLEDIV is focusable
+    HOLEDIV.setAttribute('tabindex', '0');
+</script>
+
+</body>
+</html>
